@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>educai | 教育とAIで、学びと事業の可能性を広げる</title>
+  <meta name="description" content="educaiは、受託開発、AI研修、教育領域の自社アプリ開発を行うテクノロジーカンパニーです。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Hanken Grotesk", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #fafaf8;
+      color: #0a0a0a;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
+    @media (max-width: 768px) { .container { padding: 0 1.5rem; } }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: #fafaf8;
+      border-bottom: 1px solid #e4e4e7;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 3.5rem;
+    }
+    .logo { font-size: 0.875rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span:first-child { color: #09090b; }
+    .logo span:last-child { color: #0891b2; }
+    nav { display: flex; align-items: center; gap: 2.5rem; }
+    nav a {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: #a1a1aa; transition: color 0.15s;
+    }
+    nav a:hover { color: #09090b; }
+    .btn-contact {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; border: 1px solid #18181b;
+      padding: 0.5rem 1rem; transition: all 0.15s;
+    }
+    .btn-contact:hover { background: #09090b; color: #fafaf8; }
+    @media (max-width: 768px) { nav { display: none; } }
+
+    /* Hero */
+    .hero { border-bottom: 1px solid #e4e4e7; }
+    .hero-headline { padding: 4rem 0 7rem; }
+    @media (min-width: 768px) { .hero-headline { padding: 7rem 0 9rem; } }
+    h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800; line-height: 0.95;
+      letter-spacing: -0.04em; color: #09090b;
+    }
+    h1 .accent { color: #0891b2; }
+    .hero-sub {
+      display: flex; flex-direction: column; gap: 2rem;
+      border-top: 1px solid #e4e4e7; padding-top: 2rem; padding-bottom: 5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-sub { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    }
+    .hero-sub p { font-size: 0.875rem; color: #3f3f46; line-height: 1.7; max-width: 20rem; }
+    .cta-group { display: flex; align-items: center; gap: 1.25rem; }
+    .btn-outline {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; border: 1px solid #09090b;
+      padding: 0.625rem 1.25rem; white-space: nowrap; transition: all 0.15s;
+    }
+    .btn-outline:hover { background: #09090b; color: #fafaf8; }
+    .btn-ghost {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: #a1a1aa; transition: color 0.15s; white-space: nowrap;
+    }
+    .btn-ghost:hover { color: #09090b; }
+
+    /* Services List */
+    .section-label {
+      padding: 0.75rem 0; border-bottom: 1px solid #e4e4e7;
+      font-size: 0.75rem; color: #a1a1aa; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .service-item {
+      border-bottom: 1px solid #e4e4e7;
+      margin: 0 -2.5rem;
+    }
+    .service-item:first-of-type { border-top: 1px solid #e4e4e7; }
+    .service-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.75rem 2.5rem; transition: background 0.15s;
+    }
+    .service-link:hover { background: #f4f4f5; }
+    .service-link:hover .service-title { color: #0891b2; }
+    .service-link:hover .arrow { color: #0891b2; }
+    .service-left { display: flex; align-items: baseline; gap: 2.5rem; }
+    .service-num { font-size: 0.75rem; color: #d4d4d8; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .service-title { font-size: 1.125rem; font-weight: 600; color: #09090b; transition: color 0.15s; }
+    .service-sub { font-size: 0.75rem; color: #71717a; margin-top: 0.125rem; }
+    .arrow { color: #d4d4d8; transition: color 0.15s; font-size: 1rem; }
+    @media (max-width: 768px) {
+      .service-item { margin: 0 -1.5rem; }
+      .service-link { padding: 1.75rem 1.5rem; }
+      .service-left { gap: 1.5rem; }
+    }
+
+    /* Mission */
+    .mission {
+      border-top: 1px solid #e4e4e7;
+      border-bottom: 1px solid #e4e4e7;
+    }
+    .mission-inner { padding: 5rem 0; }
+    @media (min-width: 768px) { .mission-inner { padding: 8rem 0; } }
+    .mission-grid { display: grid; gap: 2.5rem; align-items: start; }
+    @media (min-width: 768px) { .mission-grid { grid-template-columns: 160px 1fr; gap: 5rem; } }
+    .mission-label {
+      font-size: 0.75rem; color: #a1a1aa; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 0.25rem;
+    }
+    blockquote {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; color: #09090b; line-height: 1.3; letter-spacing: -0.02em;
+    }
+    .about-link {
+      display: inline-block; margin-top: 2.5rem;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: #09090b;
+      border-bottom: 1px solid #a1a1aa; padding-bottom: 0.125rem; transition: all 0.15s;
+    }
+    .about-link:hover { border-color: #0891b2; color: #0891b2; }
+
+    /* Services Detail */
+    .services-section { border-bottom: 1px solid #e4e4e7; }
+    .services-detail { padding: 4rem 0; }
+    @media (min-width: 768px) { .services-detail { padding: 6rem 0; } }
+    .service-grid { display: grid; gap: 2.5rem; align-items: start; }
+    @media (min-width: 768px) { .service-grid { grid-template-columns: 160px 1fr; gap: 5rem; } }
+    .service-head { display: flex; gap: 1rem; align-items: baseline; }
+    @media (min-width: 768px) { .service-head { flex-direction: column; gap: 0.75rem; } }
+    .service-h2 {
+      font-size: 1.5rem; font-weight: 800; color: #09090b;
+      letter-spacing: -0.03em; line-height: 1.2;
+    }
+    @media (min-width: 768px) { .service-h2 { font-size: 1.875rem; } }
+    .service-desc { font-size: 0.875rem; color: #3f3f46; line-height: 1.7; margin-bottom: 2.5rem; max-width: 32rem; }
+    .service-items { list-style: none; }
+    .service-items li {
+      display: flex; align-items: center; gap: 1rem;
+      font-size: 0.875rem; color: #3f3f46; padding: 0.5rem 0;
+    }
+    .dash { width: 1.25rem; height: 1px; background: #06b6d4; flex-shrink: 0; }
+
+    /* Page hero */
+    .page-header { border-bottom: 1px solid #e4e4e7; }
+    .page-header-inner { padding: 3.5rem 0 5rem; }
+    @media (min-width: 768px) { .page-header-inner { padding: 5rem 0; } }
+    .page-h1 {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 800; color: #09090b; letter-spacing: -0.05em; line-height: 1;
+    }
+    .page-sub { font-size: 0.875rem; color: #52525b; margin-top: 1rem; letter-spacing: 0.05em; }
+
+    /* CTA strip */
+    .cta-strip { padding: 3rem 0; }
+    .cta-row {
+      display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start;
+    }
+    @media (min-width: 640px) { .cta-row { flex-direction: row; align-items: center; justify-content: space-between; } }
+    .cta-row p { font-size: 0.875rem; color: #3f3f46; }
+
+    /* Footer */
+    footer { border-top: 1px solid #e4e4e7; }
+    .footer-inner {
+      padding: 2rem 0;
+      display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start;
+    }
+    @media (min-width: 640px) {
+      .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .footer-nav a {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #a1a1aa; transition: color 0.15s;
+    }
+    .footer-nav a:hover { color: #09090b; }
+    .copyright { font-size: 0.75rem; color: #a1a1aa; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo"><span>educ</span><span>ai</span></a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn-contact">お問い合わせ →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-headline">
+      <h1>
+        教育とAIで、<br />
+        学びと事業の<br />
+        <span class="accent">可能性を広げる。</span>
+      </h1>
+    </div>
+    <div class="hero-sub">
+      <p>educaiは、自社アプリ開発、受託開発、AI研修を行うテクノロジーカンパニーです。</p>
+      <div class="cta-group">
+        <a href="#contact" class="btn-outline">お問い合わせ →</a>
+        <a href="#services" class="btn-ghost">事業内容</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services List -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <div class="service-item">
+      <a href="#service-app" class="service-link">
+        <div class="service-left">
+          <span class="service-num">01</span>
+          <div>
+            <p class="service-title">自社アプリ開発</p>
+            <p class="service-sub">教育向けAIアプリ · 学習支援 · 業務効率化</p>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+    <div class="service-item">
+      <a href="#service-contract" class="service-link">
+        <div class="service-left">
+          <span class="service-num">02</span>
+          <div>
+            <p class="service-title">受託開発</p>
+            <p class="service-sub">Webアプリ · 業務システム · AI機能導入</p>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+    <div class="service-item">
+      <a href="#service-training" class="service-link">
+        <div class="service-left">
+          <span class="service-num">03</span>
+          <div>
+            <p class="service-title">AI研修</p>
+            <p class="service-sub">Claude Code · Codex · 実務ハンズオン</p>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="mission" id="about">
+  <div class="container">
+    <div class="mission-inner">
+      <div class="mission-grid">
+        <p class="mission-label">Mission</p>
+        <div>
+          <blockquote>
+            AIの力で、学ぶ人と教える人の<br />
+            可能性を広げる。
+          </blockquote>
+          <a href="#about" class="about-link">About educai →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Detail -->
+<section class="services-section" id="service-app">
+  <div class="container">
+    <div class="services-detail">
+      <div class="service-grid">
+        <div class="service-head">
+          <span class="service-num">01</span>
+          <h2 class="service-h2">自社アプリ開発</h2>
+        </div>
+        <div>
+          <p class="service-desc">教育領域に特化したAI活用アプリを自社開発。学ぶ人と教える人、双方の体験を改善します。</p>
+          <ul class="service-items">
+            <li><span class="dash"></span>教育向けAIアプリ</li>
+            <li><span class="dash"></span>個別最適な学習支援</li>
+            <li><span class="dash"></span>教師・教育事業者の業務支援</li>
+            <li><span class="dash"></span>学習体験の改善</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="service-contract">
+  <div class="container">
+    <div class="services-detail">
+      <div class="service-grid">
+        <div class="service-head">
+          <span class="service-num">02</span>
+          <h2 class="service-h2">受託開発</h2>
+        </div>
+        <div>
+          <p class="service-desc">ビジネス課題に合わせたシステム開発・AI導入を、要件定義からリリースまで一貫してサポートします。</p>
+          <ul class="service-items">
+            <li><span class="dash"></span>Webアプリ開発</li>
+            <li><span class="dash"></span>業務システム開発</li>
+            <li><span class="dash"></span>AI機能の導入支援</li>
+            <li><span class="dash"></span>MVP / プロトタイプ開発</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="service-training">
+  <div class="container">
+    <div class="services-detail">
+      <div class="service-grid">
+        <div class="service-head">
+          <span class="service-num">03</span>
+          <h2 class="service-h2">AI研修</h2>
+        </div>
+        <div>
+          <p class="service-desc">最新のAI開発ツールの使い方から実務ワークフローまで、ハンズオン形式で習得できる研修を提供します。</p>
+          <ul class="service-items">
+            <li><span class="dash"></span>Codex / Antigravity</li>
+            <li><span class="dash"></span>Claude Code</li>
+            <li><span class="dash"></span>AI開発ワークフロー</li>
+            <li><span class="dash"></span>Git / GitHub連携</li>
+            <li><span class="dash"></span>実務ハンズオン</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div id="contact">
+  <div class="container">
+    <div class="cta-strip">
+      <div class="cta-row">
+        <p>ご相談・お問い合わせはこちら</p>
+        <a href="mailto:kikuchishuya2007@gmail.com" class="btn-outline">お問い合わせ →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="logo"><span>educ</span><span>ai</span></a>
+      <nav class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="copyright">© 2026 educai</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
