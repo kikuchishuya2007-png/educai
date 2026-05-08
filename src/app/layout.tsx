@@ -27,7 +27,9 @@ export const metadata: Metadata = {
     siteName: "educai",
     type: "website",
   },
-};
+verification: {                                                                                            
+    google: "dj_xT2cXEMap2YhBVX-Gjdn6GMpfRTrhT4rOIassUlM",
+  },         };
 
 export default function RootLayout({
   children,
